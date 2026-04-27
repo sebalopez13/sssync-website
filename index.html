@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>/sssync | Enhance Your Potential Today</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --light-gray: #f5f5f5;
+      --mid-gray: #e8e8e8;
+      --text-gray: #444;
+      --font: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      background: var(--white);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--mid-gray); }
+
+    .nav-logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 48px 80px;
+    }
+
+    .hero-slash {
+      font-size: clamp(120px, 18vw, 220px);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -8px;
+      color: var(--black);
+      margin-bottom: 48px;
+      font-family: var(--font);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .hero-tagline {
+      font-size: clamp(14px, 2.2vw, 20px);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      max-width: 520px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-tagline strong { font-weight: 700; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SLIDER SECTION ── */
+    .slider-section {
+      padding: 80px 0;
+      overflow: hidden;
+    }
+
+    .slides-wrapper {
+      position: relative;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 80px;
+    }
+
+    .slides {
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      background: var(--light-gray);
+      border-radius: 4px;
+      padding: 56px 64px;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+    .slide.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    .slide p {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--black);
+      margin-bottom: 32px;
+    }
+
+    .slide a {
+      font-size: 14px;
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      letter-spacing: 0.05em;
+    }
+    .slide a:hover { opacity: 0.6; }
+
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--black);
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.2s;
+    }
+    .slide-btn:hover { opacity: 0.7; }
+    .slide-btn svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; }
+    .slide-btn.prev { left: 0; }
+    .slide-btn.next { right: 0; }
+
+    /* ── SECTION TITLES ── */
+    .section-label {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 400;
+      letter-spacing: -1px;
+      color: var(--black);
+      margin-bottom: 56px;
+    }
+
+    /* ── METODOLOGIA ── */
+    .metodologia {
+      padding: 100px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .metodologia-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .metodologia-card {
+      background: var(--light-gray);
+      border-radius: 4px;
+      padding: 40px 36px;
+    }
+
+    .metodologia-card h3 {
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .metodologia-card p {
+      font-size: 15px;
+      color: var(--text-gray);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .metodologia-card p:last-child { margin-bottom: 0; }
+    .metodologia-card strong { color: var(--black); font-weight: 600; }
+
+    /* ── PILARES ── */
+    .pilares {
+      position: relative;
+      padding: 100px 64px;
+      overflow: hidden;
+    }
+
+    .pilares-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 40%, rgba(180,120,60,0.55) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 60%, rgba(200,160,100,0.4) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 80%, rgba(100,60,20,0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 20%, rgba(220,180,120,0.35) 0%, transparent 40%),
+        linear-gradient(135deg, #1a1008 0%, #2d1f0a 40%, #3a2510 70%, #1a1008 100%);
+      filter: blur(0px);
+    }
+
+    .pilares-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .pilares .section-label {
+      color: var(--white);
+      margin-bottom: 64px;
+    }
+
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px 56px;
+    }
+
+    .pilar h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: 0.01em;
+    }
+
+    .pilar p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .pilar p:last-child { margin-bottom: 0; }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 100px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      margin-bottom: 32px;
+    }
+
+    .contact-left p {
+      font-size: 16px;
+      color: var(--text-gray);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .contact-left a {
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-left a:hover { text-decoration: underline; }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .form-group:last-child { margin-bottom: 0; }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-gray);
+      letter-spacing: 0.03em;
+    }
+
+    .form-group label span {
+      font-size: 11px;
+      color: #999;
+      margin-left: 4px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      border: none;
+      border-bottom: 1px solid var(--black);
+      padding: 8px 0;
+      font-family: var(--font);
+      font-size: 15px;
+      color: var(--black);
+      background: transparent;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: #666; }
+
+    .form-group textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 16px; height: 16px;
+      cursor: pointer;
+      accent-color: var(--black);
+    }
+    .checkbox-group label {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      cursor: pointer;
+    }
+
+    .form-submit {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: none;
+      border: none;
+      border-bottom: 2px solid var(--black);
+      padding: 6px 0;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: opacity 0.2s;
+    }
+    .form-submit:hover { opacity: 0.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--mid-gray);
+      padding: 32px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      width: 44px; height: 44px;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 2px;
+    }
+    .footer-logo span {
+      color: var(--white);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: var(--text-gray);
+    }
+    footer strong { color: var(--black); font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .hero { padding: 100px 24px 60px; }
+      .metodologia { padding: 60px 24px; }
+      .metodologia-grid { grid-template-columns: 1fr; }
+      .pilares { padding: 60px 24px; }
+      .pilares-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .contact { padding: 60px 24px; grid-template-columns: 1fr; gap: 48px; }
+      footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .metodologia-grid { grid-template-columns: 1fr; }
+      .pilares-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .slides-wrapper { padding: 0 56px; }
+      .metodologia-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">/</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slash">/</div>
+  <p class="hero-tagline">
+    AUMENTANDO EL POTENCIAL <strong>HUMANO</strong> A TRAVÉS DE LA <strong>TECNOLOGÍA</strong>.
+  </p>
+</section>
+
+<!-- SLIDER -->
+<section class="slider-section">
+  <div class="slides-wrapper">
+    <button class="slide-btn prev" onclick="changeSlide(-1)" aria-label="Anterior">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="slides">
+      <div class="slide active">
+        <p>Integramos la tecnología de forma consciente, para reconectar con el cuerpo, la creatividad y lo real.</p>
+        <a href="https://sssync.co/about-seba" target="_blank">Sebastián López</a>
+      </div>
+      <div class="slide">
+        <p>Consideramos clave el pasaje de un rol de consumo pasivo a uno de creación activa.</p>
+        <a href="https://www.elpais.com.uy/vida-actual/tecnologia/devolver-lo-aprendido-el-ingeniero-uruguayo-en-google-que-apuesta-por-la-educacion-local-en-ia" target="_blank">Nota El País – Uruguay</a>
+      </div>
+    </div>
+    <button class="slide-btn next" onclick="changeSlide(1)" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section class="metodologia">
+  <h2 class="section-label">Nuestra Metodología</h2>
+  <div class="metodologia-grid">
+    <div class="metodologia-card">
+      <h3>① RE-set: Desconectar para Conectar</h3>
+      <p>Nuestros <strong>talleres de movimiento</strong> ofrecen un respiro intencional del constante flujo digital. A través de la acción física y la atención plena, facilitamos una <strong>desconexión profunda</strong> que te permite reconectar con tu cuerpo y mente, liberando la energía creativa y la claridad necesarias para transformar tu relación con la tecnología.</p>
+    </div>
+    <div class="metodologia-card">
+      <h3>② RE-aprender: Innovación y Hábitos Tecnológicos</h3>
+      <p>El segundo paso es clave para el futuro. A través de nuestros talleres, te capacitamos para desarrollar hábitos digitales saludables. Este es el espacio para experimentar, innovar y aprender a utilizar herramientas de vanguardia para <strong>aumentar el potencial humano</strong>.</p>
+      <p>En nuestro <strong>Laboratorio de IA</strong> (o LabTech), no solo te enseñamos a utilizar la tecnología, sino a <strong>reprogramar tu relación con ella</strong>.</p>
+    </div>
+    <div class="metodologia-card">
+      <h3>③ RE-conectar: Comunidad y Crecimiento Continuo</h3>
+      <p>El viaje no termina después del taller. Te invitamos a ser parte de una <strong>comunidad vibrante</strong>. Aquí, la reconexión se mantiene a través de apoyo continuo, contenido exclusivo y un espacio donde las experiencias y el conocimiento se comparten. Únete a un colectivo que comparte el mismo objetivo: <strong>integrar la tecnología de forma consciente, para reconectar con el cuerpo, la creatividad y lo real.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section class="pilares">
+  <div class="pilares-bg"></div>
+  <div class="pilares-content">
+    <h2 class="section-label">/ Pilares Fundamentales</h2>
+    <div class="pilares-grid">
+      <div class="pilar">
+        <h4>Tecnología Consciente</h4>
+        <p>Usamos la innovación digital como aliada para expandir capacidades humanas, no para reemplazarlas. (Inteligencia Aumentada)</p>
+        <p>Enseñamos a usar la tecnología como una herramienta de expresión, conexión y creatividad. Promovemos un uso activo (no pasivo) que transforma a consumidores en creadores, y devuelve el poder de la imaginación al usuario.</p>
+      </div>
+      <div class="pilar">
+        <h4>Educación Transformadora</h4>
+        <p>Diseñamos experiencias educativas que despiertan la curiosidad, el pensamiento crítico y el aprendizaje activo. Desde talleres de IA para niños hasta espacios de formación para adultos creativos.</p>
+      </div>
+      <div class="pilar">
+        <h4>Movimiento y Presencia</h4>
+        <p>Creemos en la sabiduría del cuerpo. A través del movimiento libre, el equilibrio y la práctica física consciente, ayudamos a recuperar la atención, la alegría del aquí y ahora, y la reconexión con uno mismo.</p>
+      </div>
+      <div class="pilar">
+        <h4>Identidad y Expresión Creativa</h4>
+        <p>Fomentamos que cada persona explore su identidad única. Abrimos espacios seguros donde la creatividad, la diversidad y la autenticidad florecen sin juicios ni moldes.</p>
+      </div>
+      <div class="pilar">
+        <h4>Naturaleza y Ritmo Interno</h4>
+        <p>Re-conectamos con el entorno como fuente de equilibrio, inspiración y resiliencia.</p>
+        <p>Revalorizamos la relación con la naturaleza y los ritmos orgánicos. Buscamos traer naturaleza a lo urbano, y tecnología al servicio de lo humano.</p>
+      </div>
+      <div class="pilar">
+        <h4>Salud Mental y Balance Digital</h4>
+        <p>Acompañamos a personas a encontrar un equilibrio sano entre el mundo virtual y el mundo real. Reivindicamos el derecho a usar la tecnología como una herramienta de crecimiento, no como una distracción que desconecta. Promovemos el bienestar digital, la pausa, y la conciencia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="contact-left">
+    <h2>Let's /sssync</h2>
+    <p>Sea una idea, un proyecto o un simple hola, aquí estamos; escríbenos y encontremos resonancia.</p>
+    <p><a href="mailto:hola@sssync.co">hola@sssync.co</a></p>
+  </div>
+  <form class="contact-form" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name <span>(required)</span></label>
+        <input type="text" required placeholder="" />
+      </div>
+      <div class="form-group">
+        <label>Last Name <span>(required)</span></label>
+        <input type="text" required placeholder="" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email <span>(required)</span></label>
+      <input type="email" required />
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="newsletter" />
+      <label for="newsletter">SIGN UP FOR NEWS AND UPDATES</label>
+    </div>
+    <div class="form-group">
+      <label>Message <span>(required)</span></label>
+      <textarea required></textarea>
+    </div>
+    <button type="submit" class="form-submit">SSSYNC →</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo"><span>/</span></a>
+  <p>All rights reserved <strong>/sssync.co</strong></p>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Slider
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function changeSlide(dir) {
+    slides[current].classList.remove('active');
+    current = (current + dir + slides.length) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'ENVIADO ✓';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'SSSYNC →';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
