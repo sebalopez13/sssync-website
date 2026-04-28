@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>/sssync | Sobre Seba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --light-gray: #f5f5f5;
+      --mid-gray: #e8e8e8;
+      --text-gray: #444;
+      --font: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      background: var(--white);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--mid-gray); }
+
+    .nav-logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--black); }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      padding: 140px 64px 60px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .page-title h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 400;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    /* ── MAIN LAYOUT: sticky photo + scrolling text ── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 38% 1fr;
+      align-items: start;
+      padding: 0 0 0 64px;
+    }
+
+    .photo-sticky {
+      position: sticky;
+      top: 88px;
+      height: calc(100vh - 88px);
+      margin-left: -64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-sticky img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      animation: fadeIn 0.8s 0.2s ease both;
+    }
+
+    /* ── BIO CONTENT ── */
+    .bio-content {
+      padding: 0 64px 80px 72px;
+    }
+
+    .bio-name {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      color: var(--black);
+      margin-bottom: 16px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .bio-tagline {
+      font-size: clamp(14px, 1.6vw, 16px);
+      font-weight: 500;
+      font-style: italic;
+      color: var(--text-gray);
+      line-height: 1.55;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--mid-gray);
+      animation: fadeUp 0.6s 0.15s ease both;
+    }
+
+    .bio-text p {
+      font-size: clamp(15px, 1.6vw, 17px);
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--text-gray);
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .bio-text p:last-child { margin-bottom: 0; }
+    .bio-text strong { color: var(--black); font-weight: 600; }
+    .bio-text em { font-style: italic; }
+    .bio-text a {
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s;
+    }
+    .bio-text a:hover { opacity: 0.5; }
+
+    /* ── SOBRE SEBA SECTION ── */
+    .sobre-seba {
+      padding: 100px 64px;
+      background: var(--light-gray);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .sobre-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .sobre-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-gray);
+    }
+
+    .sobre-slash {
+      font-size: clamp(80px, 10vw, 140px);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -6px;
+      color: var(--black);
+    }
+
+    .sobre-roles {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .sobre-roles li {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-gray);
+      padding: 12px 0;
+      border-top: 1px solid var(--mid-gray);
+      letter-spacing: 0.02em;
+    }
+    .sobre-roles li:last-child { border-bottom: 1px solid var(--mid-gray); }
+    .sobre-roles strong { color: var(--black); font-weight: 600; }
+
+    /* ── PHOTO VENTANA ── */
+    .photo-ventana {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+    .photo-ventana img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.8s ease;
+    }
+    .photo-ventana:hover img { transform: scale(1.02); }
+
+    /* ── DARK QUOTE ── */
+    .dark-quote {
+      position: relative;
+      padding: 120px 64px;
+      overflow: hidden;
+    }
+
+    .dark-quote-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 40%, rgba(180,120,60,0.55) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 60%, rgba(200,160,100,0.4) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 80%, rgba(100,60,20,0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 20%, rgba(220,180,120,0.35) 0%, transparent 40%),
+        linear-gradient(135deg, #1a1008 0%, #2d1f0a 40%, #3a2510 70%, #1a1008 100%);
+    }
+
+    .dark-quote-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .dark-quote blockquote {
+      font-size: clamp(20px, 3vw, 36px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--white);
+      letter-spacing: -0.3px;
+    }
+
+    .dark-quote cite {
+      display: block;
+      margin-top: 40px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      font-style: normal;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 120px 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
+    }
+
+    .cta h2 {
+      font-size: clamp(48px, 8vw, 110px);
+      font-weight: 900;
+      letter-spacing: -5px;
+      line-height: 0.88;
+      color: var(--black);
+    }
+
+    .cta-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .cta-link {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 2px solid var(--black);
+      padding: 6px 0;
+      transition: opacity 0.2s;
+    }
+    .cta-link:hover { opacity: 0.4; }
+
+    .cta-link.secondary {
+      border-color: transparent;
+      color: var(--text-gray);
+      font-weight: 400;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--mid-gray);
+      padding: 32px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      width: 44px; height: 44px;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 2px;
+      text-decoration: none;
+    }
+    .footer-logo span {
+      color: var(--white);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: var(--text-gray);
+    }
+    footer strong { color: var(--black); font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+
+      .page-title { padding: 110px 24px 40px; }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        padding: 0;
+      }
+
+      .photo-sticky {
+        position: relative;
+        top: auto;
+        height: 90vw;
+        margin-left: 0;
+      }
+
+      .bio-content {
+        padding: 48px 24px 64px;
+      }
+
+      .sobre-seba {
+        padding: 60px 24px;
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .dark-quote { padding: 80px 24px; }
+
+      .cta { padding: 80px 24px; }
+      .cta-links { flex-direction: column; gap: 20px; }
+
+      footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">/</a>
+  <a href="index.html" class="nav-back">← Volver</a>
+</nav>
+
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h1>/ Sobre Seba.</h1>
+</div>
+
+<!-- MAIN: sticky photo + scrolling bio -->
+<div class="about-layout">
+
+  <div class="photo-sticky">
+    <img
+      src="sebasync_mano_BN.webp"
+      alt="Sebastián López"
+    />
+  </div>
+
+  <div class="bio-content">
+    <h2 class="bio-name">Sebastián<br>López<br>Betancurt</h2>
+    <p class="bio-tagline">
+      Uruguayo, NYer, ingeniero y atleta navegando la intersección de tecnología, cuerpo y conciencia.
+    </p>
+    <div class="bio-text">
+      <p>
+        Sebastián es uruguayo y lleva años trabajando en <strong>Google en Nueva York</strong> como Cloud Technical Account Manager. Su carrera estuvo siempre vinculada a la tecnología de frontera, pero su pregunta genuina siempre fue otra: ¿cómo hacemos para que la tecnología sirva a la persona, y no al revés?
+      </p>
+      <p>
+        /sssync nació de esa inquietud. De la convicción de que vivimos en un momento bisagra: la inteligencia artificial está transformando todo, y podemos elegir ser arrastrados por esa corriente o aprender a nadar en ella con conciencia.
+      </p>
+      <p>
+        Cree en el <strong>movimiento como herramienta de reconexión</strong>. Se formó en acrobacia y movimiento consciente en <em>La Invisible</em> en Montevideo, y continuó su práctica con el método Ido Portal en NYC. El cuerpo no es un accesorio de la mente — es su punto de partida.
+      </p>
+      <p>
+        Su trabajo en /sssync es diseñar espacios donde todo eso converge: tecnología, cuerpo, comunidad. También es co-fundador de <strong><a href="https://www.pindata.tech/" target="_blank">Pindata</a></strong> y presidente de <strong><a href="https://abono.ong/" target="_blank">Fundación Abono</a></strong>, donde lideran talleres de IA para jóvenes en Uruguay.
+      </p>
+      <p>
+        Sus prácticas profesional y física coexisten como expresiones complementarias de exploración, presencia y evolución continua.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- SOBRE SEBA / ROLES -->
+<section class="sobre-seba">
+  <div class="sobre-left">
+    <span class="sobre-label">Sobre Seba</span>
+    <div class="sobre-slash">/</div>
+    <ul class="sobre-roles">
+      <li><strong>Cloud TAM</strong> · Google NYC</li>
+      <li><strong>Co-fundador</strong> · /sssync</li>
+      <li><strong>Co-fundador</strong> · Pindata</li>
+      <li><strong>Presidente</strong> · Fundación Abono</li>
+      <li><strong>Atleta</strong> · Movimiento Consciente</li>
+    </ul>
+  </div>
+  <div class="photo-ventana">
+    <img
+      src="sebasync_ventana_BN.webp"
+      alt="Sebastián López en Nueva York"
+    />
+  </div>
+</section>
+
+<!-- DARK QUOTE -->
+<section class="dark-quote">
+  <div class="dark-quote-bg"></div>
+  <div class="dark-quote-inner">
+    <blockquote>
+      "Integramos la tecnología de forma consciente, para reconectar con el cuerpo, la creatividad y lo real."
+    </blockquote>
+    <cite>Sebastián López · Fundador /sssync</cite>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>/sssync</h2>
+  <div class="cta-links">
+    <a href="index.html#contacto" class="cta-link">Conectemos →</a>
+    <a href="index.html" class="cta-link secondary">Ver el proyecto</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo"><span>/</span></a>
+  <p>All rights reserved <strong>/sssync.co</strong></p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
